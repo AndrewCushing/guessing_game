@@ -1,7 +1,7 @@
 use std::io;
 use rand::Rng;
 use std::cmp::Ordering;
-use std::borrow::Borrow;
+use regex::Regex;
 
 fn main() {
 
@@ -22,9 +22,7 @@ fn main() {
             _ => {}
         }
 
-        let quit = "quit";
-
-        if guess.eq(quit) {
+        if Regex::new(r"(qu)|(ex)it").unwrap().is_match(&guess) {
             println!("Quitting");
             std::process::exit(0);
         }
